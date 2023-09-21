@@ -3,7 +3,9 @@
 
 int choose;
 int i = 0;
-int swap;
+int tache_counter = 0;
+//int swap;
+double Time;
 
 struct input_Task {
     char title[100];
@@ -23,14 +25,14 @@ struct input_Task in_Task[50];
 void enter(int choose){
     switch(choose){
     case 1:
-        N_task();
+        New_task();
         main();
         break;
     case 2:
-        S_task();
+        Serveral_task();
         break;
     case 3:
-        L_task();
+        list_task();
         break;
     case 4:
         printf("Modifier une tache");
@@ -50,7 +52,7 @@ void enter(int choose){
 
     }
 }
-void N_task(){
+void New_task(){
 
 
     printf("\n\t\t\t--------Welcome to the task add interface--------\n\n\n");
@@ -72,21 +74,27 @@ void N_task(){
     scanf("%d", &in_Task[i].h);
     printf("Enter the minut: ");
     scanf("%d", &in_Task[i].M);
-    i++;
-    swap = i;
+    Time = (in_Task[i].M * 60) + (in_Task[i].h * 60 * 60) + (in_Task[i].d * 24 * 60 * 60) + (in_Task[i].m * 30 * 24 * 60 * 60) + (in_Task[i].y * 365 * 24 * 60 * 60);
+    printf("The minute: %ld", Time);
+
+    //i = i + in_Task[0];
+    in_Task[i].id = tache_counter + 1;
+    tache_counter++;
+
 
 }
-void S_task(){
+void Serveral_task(){
     int n;
     int N = 1;
 
 
     printf("\n\t\t\t--------Welcome to the tasks add interface--------\n\n\n");
 
-    //printf("Enter how many tasks do you want: ");
-    //scanf("%d", &n);
+    printf("Enter how many tasks do you want: ");
+    scanf("%d", &n);
+    n+=tache_counter;
 
-    for(int i = swap; i < 100; i++){
+    for(int i = tache_counter ; i < n; i++){
         printf("--Enter the Title of the task %d: ", N);
         scanf("%s", &in_Task[i].title);
         printf("--Enter the Status of the task: ");
@@ -104,10 +112,13 @@ void S_task(){
         scanf("%d", &in_Task[i].h);
         printf("Enter the minut: ");
         scanf("%d", &in_Task[i].M);
+        Time = (in_Task[i].M * 60) + (in_Task[i].h * 60 * 60) + (in_Task[i].d * 24 * 60 * 60) + (in_Task[i].m * 30 * 24 * 60 * 60) + (in_Task[i].y * 365 * 24 * 60 * 60);
         N++;
-        i++;
-        swap = i;
-        printf("\n\nIf you want to add another task click: 1\n");
+        //in_Task[i].id = tache_counter + 1
+        tache_counter++;
+        //n = i + in_Task[0];
+        //swap = i;
+        /*printf("\n\nIf you want to add another task click: 1\n");
         printf("If you want to go back to the menu click: 0\n");
         printf("Enter your choose here: ");
         scanf("%d", &n);
@@ -118,36 +129,37 @@ void S_task(){
         }else{
             system("cls");
             S_task();
-        }
+        }*/
     }
 }
-void L_task(){
+void list_task(){
 
 
     printf("\n\t\t\t--------Welcome to the list tasks interface--------\n\n\n");
 
-    printf("\t_________________________________________________________________________________________________________\n");
-    printf("\t|\t      \t|\t        \t|\t       \t|\t   \t|\t      \t|\t     \t|\n");
-    printf("\t|\t Title\t|\t Describ\t|\t Status\t|\t Day\t|\t Month\t|\t Year\t|\n");
-    printf("\t|\t      \t|\t        \t|\t       \t|\t   \t|\t      \t|\t     \t|\n");
-    printf("\t_________________________________________________________________________________________________________\n");
-    printf("\t|\t      \t|\t        \t|\t       \t|\t   \t|\t      \t|\t     \t|\n");
+    printf("\t________________________________________________________________________________________\n");
+    printf("\t|\t      \t|\t        \t|\t       \t|\t   \t|\t      \t|\t\n");
+    printf("\t|\t Title\t|\t Describ\t|\t Status\t|\t IP\t|\t Time\t|\n");
+    printf("\t|\t      \t|\t        \t|\t       \t|\t   \t|\t      \t|\t\n");
+    printf("\t________________________________________________________________________________________\n");
+    printf("\t|\t      \t|\t        \t|\t       \t|\t   \t|\t      \t|\t\n");
 
 
 
-    for(int j = 0; j <= swap; j++){
-        printf("|\t\t%s\t", in_Task[j].title);
+
+
+
+    for(int j = 0; j <= n; j++){
+        printf("\t|\t %s\t", in_Task[j].title);
         printf("|\t %s\t\t", in_Task[j].describ);
         printf("|\t %s\t", in_Task[j].status);
-        printf("|\t %d\t", in_Task[j].)
+        printf("|\t %d\t", in_Task[j].id);
+        printf("| %lg h\n\n", (Time / -3600) / 60);
+
 
     }
+    printf("\t________________________________________________________________________________________\n");
 
-        /*printf("\t_________________________________________________________________________________________________________\n");
-        printf("\t|\t      \t|\t        \t|\t       \t|\t   \t|\t      \t|\t     \t|\n");
-        printf("\t|\t Title\t|\t Describ\t|\t Status\t|\t Day\t|\t Month\t|\t Year\t|\n");
-        printf("\t|\t      \t|\t        \t|\t       \t|\t   \t|\t      \t|\t     \t|\n");
-        printf("\t_________________________________________________________________________________________________________\n");*/
 
 
 
@@ -174,5 +186,6 @@ int main(){
         printf("You have a wrong in your input");
         main();
     }
+
 
 }
