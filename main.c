@@ -30,6 +30,7 @@ void enter(int choose){
         break;
     case 2:
         Serveral_task();
+        main();
         break;
     case 3:
         list_task();
@@ -114,7 +115,7 @@ void Serveral_task(){
         scanf("%d", &in_Task[i].M);
         Time = (in_Task[i].M * 60) + (in_Task[i].h * 60 * 60) + (in_Task[i].d * 24 * 60 * 60) + (in_Task[i].m * 30 * 24 * 60 * 60) + (in_Task[i].y * 365 * 24 * 60 * 60);
         N++;
-        //in_Task[i].id = tache_counter + 1
+        in_Task[i].id = tache_counter + 1;
         tache_counter++;
         //n = i + in_Task[0];
         //swap = i;
@@ -132,7 +133,7 @@ void Serveral_task(){
         }*/
     }
 }
-void list_task(){
+void list_task(int n){
 
 
     printf("\n\t\t\t--------Welcome to the list tasks interface--------\n\n\n");
