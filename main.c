@@ -5,8 +5,7 @@ int n;
 int choose;
 int i = 0;
 int tache_counter = 0;
-//int swap;
-double Time[50];
+
 
 struct input_Task
 {
@@ -36,6 +35,7 @@ void enter(int choose)
         break;
     case 2:
         Serveral_task();
+
         main();
         break;
     case 3:
@@ -58,6 +58,7 @@ void enter(int choose)
 
     default:
         main();
+        break;
 
     }
 }
@@ -69,7 +70,7 @@ void New_task()
 
     printf("--Enter the Title of the task: ");
     scanf("%s", &in_Task[i].title);
-    printf("--Enter the Status of the task: ");
+    printf("--Enter the Status of the task: [ToDo] or [Done] or [Doing]:\n");
     scanf("%s", &in_Task[i].status);
     printf("--Enter the Describ of the task: ");
     scanf("%s", &in_Task[i].describ);
@@ -80,10 +81,7 @@ void New_task()
     scanf("%d", &in_Task[i].m);
     printf("Enter the year: ");
     scanf("%d", &in_Task[i].y);
-
-    Time[i] = (in_Task[i].d * 24 * 60 * 60) + (in_Task[i].m * 30 * 24 * 60 * 60) + ((in_Task[i].y -1970)* 365 * 24 * 60 * 60);
-
-    printf("The minute: %ld", Time[i]);
+    i++;
 
     in_Task[i].id = tache_counter + 1;
 
@@ -101,13 +99,13 @@ void Serveral_task()
 
     printf("Enter how many tasks do you want: ");
     scanf("%d", &n);
-    n+=tache_counter;
 
-    for(int i = tache_counter ; i < n; i++)
+
+    for(int j=0 ; j < n; j++)
     {
         printf("--Enter the Title of the task %d: ", N);
         scanf("%s", &in_Task[i].title);
-        printf("--Enter the Status of the task: ");
+        printf("--Enter the Status of the task: [ToDo] or [Done] or [Doing]:\n");
         scanf("%s", &in_Task[i].status);
         printf("--Enter the Describ of the task: ");
         scanf("%s", &in_Task[i].describ);
@@ -119,7 +117,8 @@ void Serveral_task()
         printf("Enter the year: ");
         scanf("%d", &in_Task[i].y);
 
-        Time[i] = (in_Task[i].d * 24 * 60 * 60) + (in_Task[i].m * 30 * 24 * 60 * 60) + (in_Task[i].y * 365 * 24 * 60 * 60);
+        i++;
+
         N++;
         in_Task[i].id = tache_counter + 1;
         tache_counter++;
@@ -132,19 +131,17 @@ void Serveral_task()
 
 void Sort_task()
 {
-    int result;
-
-    for(i = 0; i < n; i++)
+    for(int j=0; j<n; j++)
     {
-        for(int r = i + 1; i < n; r++)
+        for(int r=j+1; r<i; r++)
         {
-            result = strcmp(in_Task[i].title, in_Task[r].title);
-            if(result > 0)
+            if(strcmp(in_Task[j].title, in_Task[r].title)>0)
             {
-                out_Task = in_Task[i];
-                in_Task[i]= in_Task[i + 1];
-                in_Task[i + 1]= out_Task;
+                out_Task = in_Task[j];
+                in_Task[j] = in_Task[r];
+                in_Task[r] = out_Task;
             }
+
         }
     }
 
@@ -152,18 +149,15 @@ void Sort_task()
 }
 
 
-void Display_task(int n)
+void Display_task()
 {
-  Sort_task();
 
-    int day_type = 86400;
-
-
+    Sort_task();
 
     printf("\n\t\t\t--------Welcome to the list tasks interface--------\n\n\n");
 
     printf("\t________________________________________________________________________________________\n");
-    printf("\t|\t      \t|\t        \t|\t       \t|\t   \t|\t      \t|\t\n");
+
     printf("\t|\t Title\t|\t Describ\t|\t Status\t|\t Id\t|\t Time\t|\n");
     printf("\t|\t      \t|\t        \t|\t       \t|\t   \t|\t      \t|\t\n");
     printf("\t________________________________________________________________________________________\n");
@@ -171,17 +165,14 @@ void Display_task(int n)
 
 
 
-    for(int j = 0; j < n; j++)
+    for(int j = 0; j < i; j++)
     {
-
-
 
             printf("\t|\t %s\t", in_Task[j].title);
             printf("|\t %s\t\t", in_Task[j].describ);
             printf("|\t %s\t", in_Task[j].status);
             printf("|\t %d\t", in_Task[j].id);
-            printf("|  %.2lf\t|\n", Time[j] / day_type);
-
+            printf("| %d/%d/%d\t|\n", in_Task[j].d, in_Task[j].m, in_Task[j].y);
 
 
 
