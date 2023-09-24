@@ -40,15 +40,19 @@ void enter(int choose)
         main();
         break;
 
-    case 3:;
+    case 3:
+        ;
         int choose_2;
         printf("To display the task by normal type choose [1], To display the task by alphabet choose [0]!!\n");
         printf("Enter your choose here: ");
         scanf("%d", &choose_2);
-        if(choose_2 == 1){
+        if(choose_2 == 1)
+        {
             Display_task();
             main();
-        }else{
+        }
+        else
+        {
             Sort_task();
             Display_task();
             main();
@@ -65,15 +69,19 @@ void enter(int choose)
         main();
         break;
 
-    case 6:;
+    case 6:
+        ;
         int choose_3;
         printf("If you want to search on task by the Id enter [1], but if you want to search on task by the Title choose [2]");
         printf("Enter your choose here: ");
         scanf("%d", &choose_3);
-        if(choose_3 == 2){
+        if(choose_3 == 2)
+        {
             search_task_Title();
             main();
-        }else{
+        }
+        else
+        {
             search_task();
             main();
         }
@@ -112,7 +120,7 @@ void New_task()
     printf("Enter the year: ");
     scanf(" %d", &in_Task[i].y);
 
-    in_Task[i].id = Master_Id;
+    in_Task[i].id = Master_Id+1;
 
     Master_Id++;
     i++;
@@ -217,7 +225,8 @@ void Display_task()
 
 
 
-int search_task(){
+int search_task()
+{
 
     int id_Work;
 
@@ -229,9 +238,11 @@ int search_task(){
     scanf("%d", &find_Id);
 
 
-    for (int j = 0; j < i; j++){
+    for (int j = 0; j < i; j++)
+    {
 
-        if(find_Id == in_Task[j].id){
+        if(find_Id == in_Task[j].id)
+        {
             printf("\t The title: %s\n", in_Task[j].title);
             printf("\t The describ: %s\n", in_Task[j].describ);
             printf("\t The status: %s\n", in_Task[j].status);
@@ -248,7 +259,8 @@ int search_task(){
 
 
 
-void Edit_task(){
+void Edit_task()
+{
 
     int edit = search_task();// edit is a box of Id (id_Work)
     printf("\n\t\t\t--------Welcome to the edit interface--------\n\n\n");
@@ -261,27 +273,34 @@ void Edit_task(){
     printf("Enter here: ");
     scanf("%d", &choose_Edit);
 
-    switch(choose_Edit){
-    case 1:;
+    switch(choose_Edit)
+    {
+    case 1:
+        ;
         int m;// choose between 1 and 2, Doing or Done
 
         printf("Enter 1 for [Doing] or 2 for [Done]: ");
         scanf("%d", &m);
-        if (m == 1){
+        if (m == 1)
+        {
             strcpy(in_Task[edit].status, edit_Status[1]);
-        }else{
+        }
+        else
+        {
             strcpy(in_Task[edit].status, edit_Status[2]);
             counter_Done++;
         }
         break;
-    case 2:;
+    case 2:
+        ;
         char edit_Describ[100];
 
         printf("Enter the new Describ: ");
         scanf(" %[^\n]s", &edit_Describ);
         strcpy(in_Task[edit].describ, edit_Describ);
         break;
-    case 3:;
+    case 3:
+        ;
         int edit_day, edit_month, edit_year;
 
         printf("Enter the new Day: ");
@@ -303,7 +322,8 @@ void Edit_task(){
 }
 
 
-void Delete_task(){
+void Delete_task()
+{
 
     int Delete = search_task();
 
@@ -315,63 +335,72 @@ void Delete_task(){
     printf("Enter your choose here: ");
     scanf("%d", &choose_Delete);
 
-    if(choose_Delete == 1){
+    if(choose_Delete == 1)
+    {
 
-       // int size = sizeof(in_Task) / sizeof(in_Task[0]);
+        // int size = sizeof(in_Task) / sizeof(in_Task[0]);
 
-        for(int j = Delete; j < i ; j++){
+        for(int j = Delete; j < i ; j++)
+        {
             in_Task[j] = in_Task[j + 1];
         }
         i--;
-    }else{
+    }
+    else
+    {
         main();
     }
 }
 
 
-void search_task_Title(){
+void search_task_Title()
+{
 
-        printf("\n\t\t\t--------Welcome to the delete interface--------\n\n\n");
+    printf("\n\t\t\t--------Welcome to the delete interface--------\n\n\n");
 
-        char find_Title[20];
-        printf("Enter the title of the task: ");
-        scanf("%s", find_Title);
+    char find_Title[20];
+    printf("Enter the title of the task: ");
+    scanf("%s", find_Title);
 
-        for(int j = 0; j < i ; j++){
-            if(strcmp(in_Task[j].title, find_Title) == 0){
+    for(int j = 0; j < i ; j++)
+    {
+        if(strcmp(in_Task[j].title, find_Title) == 0)
+        {
 
-                printf("\t The title: %s\n", in_Task[j].title);
-                printf("\t The describ: %s\n", in_Task[j].describ);
-                printf("\t The status: %s\n", in_Task[j].status);
-                printf("\t The date: %d/%d/%d\n", in_Task[j].d, in_Task[j].m, in_Task[j].y);
-                break;
-            }
+            printf("\t The title: %s\n", in_Task[j].title);
+            printf("\t The describ: %s\n", in_Task[j].describ);
+            printf("\t The status: %s\n", in_Task[j].status);
+            printf("\t The date: %d/%d/%d\n", in_Task[j].d, in_Task[j].m, in_Task[j].y);
+            break;
         }
+    }
 }
 
 
-void Statistics(){
-        printf("\n\t\t\t--------Welcome to the statistics interface--------\n\n\n");
+void Statistics()
+{
+    printf("\n\t\t\t--------Welcome to the statistics interface--------\n\n\n");
 
-        int choose_4;
+    int choose_4;
 
-        printf("if you wanna display the number of all tasks enter [1], also if you wanna display the tasks by status (Done) enter [2]\n");
-        printf("Enter your choose here: ");
-        scanf("%d", &choose_4);
+    printf("if you wanna display the number of all tasks enter [1], also if you wanna display the tasks by status (Done) enter [2]\n");
+    printf("Enter your choose here: ");
+    scanf("%d", &choose_4);
 
 
-        switch(choose_4){
-        case 1:
-            printf("--->The number of all tasks: %d", i);
-            break;
+    switch(choose_4)
+    {
+    case 1:
+        printf("--->The number of all tasks: %d", i);
+        break;
 
-        case 2:
-            printf("--->The number of done tasks: %d", counter_Done);
-            break;
+    case 2:
+        printf("--->The number of done tasks: %d", counter_Done);
+        break;
 
-        default:
-            printf("You have a wrong in your input!!\nCheck it and try again");
-        }
+    default:
+        printf("You have a wrong in your input!!\nCheck it and try again");
+    }
 
 }
 
