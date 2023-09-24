@@ -5,6 +5,7 @@ int n; // the box of the how many tasks the user he want
 int choose;// user choose in menu
 int i = 0;
 int Master_Id = 0;
+int counter_Done = 0;
 char edit_Status[20][20] = {"ToDo", "Doing", "Done"};
 
 
@@ -79,7 +80,8 @@ void enter(int choose)
         break;
 
     case 7:
-        printf("Statistiques");
+        Statistics();
+        main();
         break;
 
     default:
@@ -269,6 +271,7 @@ void Edit_task(){
             strcpy(in_Task[edit].status, edit_Status[1]);
         }else{
             strcpy(in_Task[edit].status, edit_Status[2]);
+            counter_Done++;
         }
         break;
     case 2:;
@@ -344,9 +347,34 @@ void search_task_Title(){
                 break;
             }
         }
+}
 
+
+void Statistics(){
+        printf("\n\t\t\t--------Welcome to the statistics interface--------\n\n\n");
+
+        int choose_4;
+
+        printf("if you wanna display the number of all tasks enter [1], also if you wanna display the tasks by status (Done) enter [2]\n");
+        printf("Enter your choose here: ");
+        scanf("%d", &choose_4);
+
+
+        switch(choose_4){
+        case 1:
+            printf("--->The number of all tasks: %d", i);
+            break;
+
+        case 2:
+            printf("--->The number of done tasks: %d", counter_Done);
+            break;
+
+        default:
+            printf("You have a wrong in your input!!\nCheck it and try again");
+        }
 
 }
+
 
 
 
