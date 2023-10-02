@@ -108,19 +108,24 @@ void New_task()
 
     printf("--Enter the Title of the task: ");
     scanf(" %[^\n]s", &in_Task[i].title);
+
     strcpy(in_Task[i].status, edit_Status[0]);
     printf("The status: %s\n", in_Task[i].status);
+
     printf("--Enter the Describ of the task: ");
     scanf(" %[^\n]s", &in_Task[i].describ);
+
     printf("--<<Enter the Deadline of the task dd/mm/yy>>\n");
     printf("Enter the day: ");
     scanf(" %d", &in_Task[i].d);
+
     printf("Enter the month: ");
     scanf(" %d", &in_Task[i].m);
+
     printf("Enter the year: ");
     scanf(" %d", &in_Task[i].y);
 
-    in_Task[i].id = Master_Id+1;
+    in_Task[i].id = Master_Id + 1;
 
     Master_Id++;
     i++;
@@ -146,19 +151,24 @@ void Serveral_task()
     {
         printf("--Enter the Title of the task %d: ", N);
         scanf(" %[^\n]s", &in_Task[i].title);
+
         strcpy(in_Task[i].status, edit_Status[0]);
         printf("The status: %s\n", in_Task[i].status);
+
         printf("--Enter the Describ of the task: ");
         scanf(" %[^\n]s", &in_Task[i].describ);
+
         printf("--<<Enter the Deadline of the task dd/mm/yy>>\n");
         printf("Enter the day: ");
         scanf(" %d", &in_Task[i].d);
+
         printf("Enter the month: ");
         scanf(" %d", &in_Task[i].m);
+
         printf("Enter the year: ");
         scanf(" %d", &in_Task[i].y);
 
-        in_Task[i].id = Master_Id;
+        in_Task[i].id = Master_Id + 1;
 
         Master_Id++;
 
@@ -174,7 +184,7 @@ void Serveral_task()
 void Sort_task()
 {
 
-    for(int j = 0; j < n; j++)
+    for(int j = 0; j < i; j++)
     {
         for(int k = j + 1; k < i; k++)
         {
@@ -337,8 +347,6 @@ void Delete_task()
 
     if(choose_Delete == 1)
     {
-
-        // int size = sizeof(in_Task) / sizeof(in_Task[0]);
 
         for(int j = Delete; j < i ; j++)
         {
